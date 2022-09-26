@@ -1,15 +1,17 @@
 <html>
-<body>
-<h1 id="label">
-Pas d'id trouvé
-</h1>
-<script>
-// window.localStorage.setItem('batch_install_id', 'toto');
-const batchId = window.localStorage.getItem('batch_install_id');
-if (batchId != null) {
-	const label = document.getElementById('label');
-	label.innerText = batchId;
-}
-</script>
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	</head>
+	<body>
+		<h1 id="label">Pas d'id trouvé</h1>
+		<script>
+			// window.localStorage.setItem('batch_install_id', 'toto');
+			const batchId = window.localStorage.getItem('batch_install_id');
+			if (batchId != null) {
+				const label = document.getElementById('label');
+				label.innerText = batchId;
+			}
+		</script>
+	</body>
 </html>
