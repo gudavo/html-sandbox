@@ -6,12 +6,29 @@
 	<body>
 		<h1 id="label">Pas d'id trouvé</h1>
 		<script>
-			// window.localStorage.setItem('batch_install_id', 'toto');
-			const batchId = window.localStorage.getItem('batch_install_id');
-			if (batchId != null) {
-				const label = document.getElementById('label');
-				label.innerText = batchId;
-			}
+			const originalSetItem = localStorage.setItem;
+
+			localStorage.setItem = function(key, value) {
+			  const event = new Event('itemInserted');
+
+			  event.value = value;
+			  event.key = key;
+
+			  document.dispatchEvent(event);
+
+			  originalSetItem.apply(this, arguments);
+			};
+
+			const localStorageSetHandler = function(e) {
+				if (e.key === 'batch_install_id') {
+					const batchId = e.value;
+					if (batchId != null) {
+						const label = document.getElementById('label');
+						label.innerText = batchId;
+					}
+			};
+
+			document.addEventListener("itemInserted", localStorageSetHandler, false);
 		</script>
 	</body>
 </html>
