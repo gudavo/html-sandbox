@@ -4,32 +4,6 @@
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 	</head>
 	<body>
-		<h1 id="label">Pas d'id trouvé</h1>
-		<script>
-			const originalSetItem = localStorage.setItem;
-
-			localStorage.setItem = function(key, value) {
-			  const event = new Event('itemInserted');
-
-			  event.value = value;
-			  event.key = key;
-
-			  document.dispatchEvent(event);
-
-			  originalSetItem.apply(this, arguments);
-			};
-
-			const localStorageSetHandler = function(e) {
-				if (e.key === 'batch_install_id') {
-					const batchId = e.value;
-					if (batchId != null) {
-						const label = document.getElementById('label');
-						label.innerText = batchId;
-					}
-				}
-			};
-
-			document.addEventListener("itemInserted", localStorageSetHandler, false);
-		</script>
+		<button onclick="window.location.href='prefs:root=Privacy&path=LOCATION'">test</button>
 	</body>
 </html>
